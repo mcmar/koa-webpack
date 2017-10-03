@@ -132,7 +132,7 @@ function koaHotware(hot, compiler) {
               return hot(context.req, {
                 write: stream.write.bind(stream),
                 writeHead: function writeHead(status, headers) {
-                  context.body = stream;
+                  stream.pipe(context.res);
                   context.status = status;
                   context.set(headers);
                 }
